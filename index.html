@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stylex – Your Smart Haircare Mirror</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000000;
+      color: #ffffff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: #000000;
+      color: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    header img {
+      width: 220px;
+      margin-bottom: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #c3b245;
+      opacity: 0.9;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    nav {
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 15px 0;
+      box-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: #d4af37;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 5px 10px;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav button i {
+      margin-right: 6px;
+    }
+
+    nav button:hover {
+      text-decoration: underline;
+      transform: scale(1.1);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+      text-align: left;
+    }
+
+    .home-section {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      animation: fadeIn 1s ease;
+    }
+
+    section {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.1);
+      display: none;
+      color: #ffffff;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    section.active {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    section:hover {
+      transform: scale(1.02);
+    }
+
+    section h2 {
+      color: #d4af37;
+      margin-bottom: 15px;
+      font-size: 1.8em;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .product-container {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.1);
+      transition: transform 0.3s;
+      flex-wrap: wrap;
+    }
+
+    .product-container:hover {
+      transform: scale(1.02);
+    }
+
+    .product-image {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .product-image:hover {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .product-info h3 {
+      color: #d4af37;
+      margin-bottom: 10px;
+      font-size: 2em;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 1.5em;
+      color: #ffffff;
+    }
+
+    /* Buy Button Styling */
+    .buy-button {
+      margin-top: 15px;
+      background-color: #d4af37;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-button:hover {
+      background-color: #b89d30;
+    }
+
+    /* Payment Options Styling */
+    .payment-options {
+      display: none;
+      margin-top: 20px;
+      background-color: #2a2a2a;
+      padding: 15px;
+      border-radius: 10px;
+      color: #fff;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .payment-options ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .payment-options li {
+      margin: 10px 0;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    footer {
+      background: #000000;
+      color: #d4af37;
+      text-align: center;
+      padding: 25px;
+      margin-top: 60px;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    /* ===== Video Section Styling ===== */
+    .video-section {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .video-container {
+      background: #000;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .video-container:hover {
+      transform: scale(1.02);
+    }
+
+    .video-container h3 {
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .video-container iframe,
+    .video-container video {
+      width: 100%;
+      height: 315px;
+      border-radius: 8px;
+    }
+
+    .video-description {
+      color: #ccc;
+      font-size: 0.95em;
+      margin-top: 12px;
+      line-height: 1.5;
+      opacity: 0.85;
+      font-style: italic;
+      transition: all 0.3s ease;
+    }
+
+    .video-container:hover .video-description {
+      opacity: 1;
+      color: #f2f2f2;
+    }
+
+    /* === Animations === */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === Responsive Adjustments === */
+    @media (max-width: 768px) {
+      header img {
+        width: 180px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      main {
+        margin: 30px auto;
+        padding: 0 15px;
+      }
+
+      .product-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .product-image {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .product-info {
+        min-width: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav button {
+        font-size: 1em;
+      }
+
+      footer {
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img src="stylex-logo.png" alt="Stylex Logo" />
+    <p>Empowering salons to deliver exceptional customer satisfaction through smart technology and compatible solutions.</p>
+  </header>
+
+  <nav>
+    <button onclick="showSection('home')"><i class="fas fa-home"></i> Home</button>
+    <button onclick="showSection('product')"><i class="fas fa-box-open"></i> Product</button>
+    <button onclick="showSection('contact')"><i class="fas fa-envelope"></i> Contact</button>
+  </nav>
+
+  <main>
+    <section id="home" class="active">
+      <div class="home-section">
+        <article>
+          <h2>What is Stylex?</h2>
+          <p>
+            Stylex is a new and improved technology designed specifically for salons. It combines a mirror and touch-screen TV with AI technology that identifies your unique hair type and color by analyzing a strand of your hair through the software. Once your hair is identified, the system provides the stylist with the exact chemicals and precise percentages needed to achieve your desired hair color. It also recommends the best products for your hair type and displays various hairstyle options directly in the mirror to help you visualize what would look best.
+          </p>
+
+          <div class="video-section">
+            <div class="video-container">
+              <h3>📺 Advertisement</h3>
+              <iframe src="https://www.youtube.com/embed/YOUR_AD_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+              <p class="video-description">Discover how Stylex transforms the salon experience with AI-powered hair diagnostics and real-time hairstyle previews.</p>
+            </div>
+
+            <div class="video-container">
+              <h3>🎙️ Interview with Customer</h3>
+              <iframe src="https://www.youtube.com/embed/YOUR_INTERVIEW1_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+              <p class="video-description">Hear firsthand from a satisfied salon client who experienced Stylex’s smart mirror technology during their color session.</p>
+            </div>
+
+            <div class="video-container">
+              <h3>🎙️ Customer Interview</h3>
+              <iframe src="https://www.youtube.com/embed/YOUR_INTERVIEW2_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+              <p class="video-description">Another testimonial highlighting how Stylex’s product recommendations helped improve hair health and styling confidence.</p>
+            </div>
+          </div>
+        </article>
+        <h2>📊 Startup Costs</h2>
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Software & Dev</td><td>$504,680</td></tr>
+    <tr><td>Tech Infrastructure</td><td>$3,000</td></tr>
+    <tr><td>Branding & Design</td><td>$4,200</td></tr>
+    <tr><td>Marketing & Sales</td><td>$10,000</td></tr>
+    <tr><td>Business & Legal</td><td>$4,500</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>$526,380</strong></td></tr>
+  </tbody>
+</table>
+      </div>
+    </section>
+
+    <section id="product">
+      <h2>Product</h2>
+      <div class="product-container">
+        <img src="Mirror3DModel.png" alt="Stylex Mirror" class="product-image" />
+        <div class="product-info">
+          <h3>Stylex Mirror</h3>
+          <p class="price">$10,000</p>
+
+          <!-- Buy Button -->
+          <button class="buy-button" onclick="togglePayment()">Buy Now</button>
+
+          <!-- Payment Options -->
+          <div class="payment-options" id="paymentBox">
+            <p>Select a payment method:</p>
+            <ul>
+              <li>
+                <button onclick="payWithCreditCard()" class="buy-button" style="background-color:#4CAF50; color:#fff;">
+                  <i class="fas fa-credit-card"></i> Pay with Credit Card
+                </button>
+              </li>
+              <li>
+                <button onclick="payWithPayPal()" class="buy-button" style="background-color:#003087; color:#fff;">
+                  <i class="fab fa-cc-paypal"></i> Pay with PayPal
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: idk | Phone: idk yet</p>
+      <p>Follow us on social media for the latest updates!!</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Stylex — Where Smart Beauty Begins. (This page is fictitious, for educational purposes.)
+  </footer>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('main > section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function togglePayment() {
+      const box = document.getElementById('paymentBox');
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function payWithCreditCard() {
+      alert("Redirecting to Credit Card payment gateway...");
+      // Simulate redirect or payment process here
+      // window.location.href = "https://your-credit-card-payment-url.com";
+    }
+
+    function payWithPayPal() {
+      alert("Redirecting to PayPal...");
+      // Simulate redirect or payment process here
+      // window.location.href = "https://www.paypal.com/checkoutnow";
+    }
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
