@@ -52,17 +52,19 @@
       animation: fadeInUp 1.5s ease-in-out;
     }
 
-    nav {
-      background: #1a1a1a;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      padding: 15px 0;
-      box-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+nav {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 15px 0;
+  box-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
+  position: fixed; /* Changed from sticky to fixed */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 
     nav button {
       background: none;
@@ -86,12 +88,13 @@
       color: #fff;
     }
 
-    main {
-      max-width: 1000px;
-      margin: 50px auto;
-      padding: 0 20px;
-      text-align: left;
-    }
+main {
+  max-width: 1000px;
+  margin: 100px auto 50px; /* Added top margin to avoid overlap */
+  padding: 0 20px;
+  text-align: left;
+}
+
 
     .home-section {
       display: flex;
@@ -433,7 +436,7 @@
 
     <section id="contact">
       <h2>Contact Us</h2>
-      <p>Email: idk | Phone: idk yet</p>
+      <p>Email:Stylexsmartmirror@gmail.com | Phone: 484-2577-777 | Instagram: Stylexsmartmirror</p>
       <p>Follow us on social media for the latest updates!!</p>
     </section>
   </main>
