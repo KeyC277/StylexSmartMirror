@@ -52,17 +52,19 @@
       animation: fadeInUp 1.5s ease-in-out;
     }
 
-    nav {
-      background: #1a1a1a;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      padding: 15px 0;
-      box-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+nav {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 15px 0;
+  box-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  will-change: transform; /* improve animation performance */
+}
+
 
     nav button {
       background: none;
@@ -335,6 +337,25 @@
         font-size: 0.9em;
       }
     }
+.team-photo-wrapper {
+  text-align: center;
+  margin: 30px auto;
+  max-width: 750px; /* was 600px */
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+}
+
+.team-photo-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 3px solid #d4af37;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+}
+
   </style>
 </head>
 
@@ -349,6 +370,7 @@
     <button onclick="showSection('home')"><i class="fas fa-home"></i> Home</button>
     <button onclick="showSection('product')"><i class="fas fa-box-open"></i> Product</button>
     <button onclick="showSection('contact')"><i class="fas fa-envelope"></i> Contact</button>
+    <button onclick="showSection('team')"><i class="fas fa-users"></i> Team</button>
   </nav>
 
   <main>
@@ -406,6 +428,14 @@
 </table>
       </div>
     </section>
+    
+<section id="team">
+  <div class="team-photo-wrapper">
+    <img src="StylexTeam.png" alt="Stylex Team">
+    <p>We are a passionate team of innovators, designers, and developers working together to revolutionize the salon experience with Stylex.</p>
+  </div>
+</section>
+
 
     <section id="product">
       <h2>Product</h2>
@@ -449,33 +479,49 @@
     &copy; 2025 Stylex — Where Smart Beauty Begins. (This page is fictitious, for educational purposes.)
   </footer>
 
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('main > section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+<script>
+  function showSection(id) {
+    const sections = document.querySelectorAll('main > section');
+    sections.forEach(section => section.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function togglePayment() {
+    const box = document.getElementById('paymentBox');
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function payWithCreditCard() {
+    alert("Redirecting to Credit Card payment gateway...");
+    // window.location.href = "https://your-credit-card-payment-url.com";
+  }
+
+  function payWithPayPal() {
+    alert("Redirecting to PayPal...");
+    // window.location.href = "https://www.paypal.com/checkoutnow";
+  }
+
+  let lastScrollTop = 0;
+  const nav = document.querySelector('nav');
+
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+      nav.style.transform = 'translateY(-100%)';
+      nav.style.transition = 'transform 0.3s ease';
+    } else {
+      nav.style.transform = 'translateY(0)';
+      nav.style.transition = 'transform 0.3s ease';
     }
 
-    function togglePayment() {
-      const box = document.getElementById('paymentBox');
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
-    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+</script>
 
-    function payWithCreditCard() {
-      alert("Redirecting to Credit Card payment gateway...");
-      // Simulate redirect or payment process here
-      // window.location.href = "https://your-credit-card-payment-url.com";
-    }
-
-    function payWithPayPal() {
-      alert("Redirecting to PayPal...");
-      // Simulate redirect or payment process here
-      // window.location.href = "https://www.paypal.com/checkoutnow";
-    }
-    
-  </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </body>
 </html>
